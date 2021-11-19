@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenliulyx.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="题目简述  （渣翻）一个无向图包含从\(0\)到 \(n\)-\(1\) 的\(n\)个顶点以及\(m\)个边，图的每个边都有正整数权值。但一些边权被清除了！因此要重新分配正整数边权给每一个边权被清除的边，以使得顶点\(s,t\)之间的最短路径的长度是\(L\)。 第一行输入 \(n,m,L,s,t\) 分别表示图的点数，边数，修改后的最短路径长度和最短路的起点和终点。 接下来m行每行输入">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CF715B 【Complete The Graph】题解">
+<meta property="og:url" content="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF715B%20%E3%80%90Complete%20The%20Graph%E3%80%91%E9%A2%98%E8%A7%A3.html">
+<meta property="og:site_name" content="枕流の尘歌壶">
+<meta property="og:description" content="题目简述  （渣翻）一个无向图包含从\(0\)到 \(n\)-\(1\) 的\(n\)个顶点以及\(m\)个边，图的每个边都有正整数权值。但一些边权被清除了！因此要重新分配正整数边权给每一个边权被清除的边，以使得顶点\(s,t\)之间的最短路径的长度是\(L\)。 第一行输入 \(n,m,L,s,t\) 分别表示图的点数，边数，修改后的最短路径长度和最短路的起点和终点。 接下来m行每行输入">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-25T07:52:18.000Z">
+<meta property="article:modified_time" content="2021-09-28T09:21:33.445Z">
+<meta property="article:author" content="枕流">
+<meta property="article:tag" content="枕流の尘歌壶">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF715B%20%E3%80%90Complete%20The%20Graph%E3%80%91%E9%A2%98%E8%A7%A3">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF715B%20%E3%80%90Complete%20The%20Graph%E3%80%91%E9%A2%98%E8%A7%A3.html","path":"异世修行/CF715B 【Complete The Graph】题解.html","title":"CF715B 【Complete The Graph】题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CF715B 【Complete The Graph】题解 | 枕流の尘歌壶
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">枕流の尘歌壶</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">只要不失去你的崇高，整个世界都会为你敞开。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%A4%E9%81%8Ddj"><span class="nav-number">2.</span> <span class="nav-text">思路（两遍dj）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code%E6%9C%89%E6%B3%A8%E9%87%8A%E7%89%88"><span class="nav-number">3.</span> <span class="nav-text">code（有注释版）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">枕流</p>
+  <div class="site-description" itemprop="description">谁也没有见过风，更别说你和我了；谁也没有见过爱情，直到有花束拋向自己。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://tengkaize.github.io/" title="https:&#x2F;&#x2F;tengkaize.github.io" rel="noopener" target="_blank">tkz的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hc20050615.github.io/" title="https:&#x2F;&#x2F;hc20050615.github.io" rel="noopener" target="_blank">hc的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://psephurusgladius.github.io/" title="https:&#x2F;&#x2F;psephurusgladius.github.io" rel="noopener" target="_blank">白鲟的博客</a>
+        </li>
+    </ul>
+  </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">CF715B 【Complete The Graph】题解
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h2 id="题目简述"><strong>题目简述</strong></h2>
+<ul>
+<li><p>（渣翻）一个无向图包含从<span class="math inline">\(0\)</span>到 <span class="math inline">\(n\)</span>-<span class="math inline">\(1\)</span> 的<span class="math inline">\(n\)</span>个顶点以及<span class="math inline">\(m\)</span>个边，图的每个边都有正整数权值。但一些边权被清除了！因此要重新分配正整数边权给每一个边权被清除的边，以使得顶点<span class="math inline">\(s,t\)</span>之间的最短路径的长度是<span class="math inline">\(L\)</span>。</p></li>
+<li><p>第一行输入 <span class="math inline">\(n,m,L,s,t\)</span> 分别表示图的点数，边数，修改后的最短路径长度和最短路的起点和终点。</p></li>
+<li><p>接下来m行每行输入<span class="math inline">\(u,v,w\)</span>。<span class="math inline">\(u,v\)</span>表示边的两个端点，w表示该边权值。如果w=0则表示该边边权被消除了。</p></li>
+<li><p>确保没有重边。</p></li>
+<li><p>输出<span class="math inline">\(“NO”\)</span>如果无法使最短路长度为L。 如果可以则第一行输出<span class="math inline">\(“YES”\)</span>。 接下来的<span class="math inline">\(m\)</span>行应包含修改后图形的边。每行应该包含三个整数<span class="math inline">\(u_i\)</span>，<span class="math inline">\(v_i\)</span>和<span class="math inline">\(w_i\)</span>。未被清除的边权值必须保持不变，而新的边权可以是不超过<span class="math inline">\(10^{18}\)</span>的任何正整数。</p></li>
+<li><p>输出中边的顺序无关紧要。<span class="math inline">\(s,t\)</span>间最短路长度必须等于<span class="math inline">\(L\)</span>。</p></li>
+<li><p>如果有多个解决方案，请输出其中任何一个。</p></li>
+</ul>
+<h2 id="思路两遍dj"><strong>思路（两遍dj）</strong></h2>
+<p><strong>1.</strong> 先将所有被消为 <span class="math inline">\(0\)</span> 的边权改为 <span class="math inline">\(1\)</span>,跑一边 <span class="math inline">\(dj\)</span>,如果 <span class="math inline">\(dis[t]\gt L\)</span>则无解。因为每条边必须要有大于等于 <span class="math inline">\(1\)</span> 的边权。赋为 <span class="math inline">\(1\)</span> 超 <span class="math inline">\(L\)</span> 就没办法了。</p>
+<p><strong>2.</strong> 第一遍<span class="math inline">\(dj\)</span>的最短路数组为 <span class="math inline">\(dis[][0]\)</span>,第二遍为 <span class="math inline">\(dis[][1]\)</span>。记 <span class="math inline">\(dif=L-dist[t][0]\)</span>，即与 <span class="math inline">\(L\)</span> 相差多少。</p>
+<p><strong>3.</strong> 第二遍跑 <span class="math inline">\(dj\)</span> 时，对于任意 <span class="math inline">\(x\rightarrow y\)</span>,如果满足 <span class="math inline">\(dis[x][1]+w&lt;dis[y][0]+dif\)</span>，</p>
+<p>那么更新 <span class="math inline">\(w=dis[y][0]+dif-dis[x][1]\)</span>，这样就能使更新后的最短路长度为 <span class="math inline">\(L\)</span>。</p>
+<hr />
+<p><strong>注：</strong></p>
+<p>1.蒟蒻 zhenliu一开始没想明白为什么更新 <span class="math inline">\(w\)</span> 就能使更新后的最短路长度为 <span class="math inline">\(L\)</span>。</p>
+<p>机房大佬一言点会：“因为你<strong>每个满足这个条件的</strong>都更新，那么最短路肯定最后就是 <span class="math inline">\(L\)</span>了呗！如果这样都不是 <span class="math inline">\(L\)</span>那就输出 <span class="math inline">\(NO\)</span>呗！”</p>
+<p>2.这题不用堆优化就能过，虽然我用了。。。</p>
+<hr />
+<h2 id="code有注释版"><strong>code（有注释版）</strong></h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RI register int</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; PII;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">10002</span>,maxm=<span class="number">20002</span>;</span><br><span class="line"><span class="keyword">int</span> head[maxn],to[maxm],nxt[maxm],len[maxm],vis[maxn],zero[maxm],from[maxm],dis[maxn][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,L,s,t,u,v,w,dif,tot=<span class="number">1</span>;</span><br><span class="line">priority_queue&lt;PII,vector&lt;PII&gt;,greater&lt;PII&gt; &gt;que;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> <span class="title">Read</span><span class="params">(T &amp;t)</span></span>&#123;</span><br><span class="line">	t=<span class="number">0</span>;<span class="keyword">char</span> c;<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>((c=<span class="built_in">getchar</span>())&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)(t*=<span class="number">10</span>)+=c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line">	t*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> w,<span class="keyword">int</span> z)</span></span>&#123;</span><br><span class="line">	to[++tot]=y;</span><br><span class="line">	zero[tot]=z; </span><br><span class="line">	nxt[tot]=head[x];</span><br><span class="line">	len[tot]=w+z;</span><br><span class="line">	from[tot]=x;</span><br><span class="line">	head[x]=tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(vis));</span><br><span class="line">	<span class="keyword">for</span>(RI i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="comment">//是0到n-1啊…… </span></span><br><span class="line">		dis[i][k]=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dis[s][k]=<span class="number">0</span>;</span><br><span class="line">	que.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>,s));</span><br><span class="line">	<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="keyword">int</span> x=que.<span class="built_in">top</span>().second;</span><br><span class="line">		que.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[x])<span class="keyword">continue</span>;</span><br><span class="line">		vis[x]=<span class="number">1</span>; </span><br><span class="line">		<span class="keyword">for</span>(RI i=head[x];i;i=nxt[i])&#123;</span><br><span class="line">			<span class="keyword">int</span> y=to[i];</span><br><span class="line">			<span class="keyword">if</span>(k==<span class="number">1</span>)&#123;<span class="comment">//第二遍dj特殊处理 </span></span><br><span class="line">				<span class="keyword">if</span>(zero[i]&amp;&amp;dis[x][<span class="number">1</span>]+len[i]&lt;dis[y][<span class="number">0</span>]+dif)</span><br><span class="line">					len[i^<span class="number">1</span>]=len[i]=dis[y][<span class="number">0</span>]+dif-dis[x][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(dis[y][k]&gt;dis[x][k]+len[i])&#123;</span><br><span class="line">				dis[y][k]=dis[x][k]+len[i];</span><br><span class="line">				que.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(dis[y][k],y));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">Read</span>(n);</span><br><span class="line">	<span class="built_in">Read</span>(m);</span><br><span class="line">	<span class="built_in">Read</span>(L);</span><br><span class="line">	<span class="built_in">Read</span>(s);</span><br><span class="line">	<span class="built_in">Read</span>(t);</span><br><span class="line">	<span class="keyword">for</span>(RI i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">		<span class="built_in">Read</span>(u);</span><br><span class="line">		<span class="built_in">Read</span>(v);</span><br><span class="line">		<span class="built_in">Read</span>(w);</span><br><span class="line">		<span class="built_in">add_edge</span>(u,v,w,!w);<span class="comment">//!w判断w是否为0，为0则传入1 ，方便后面dj判断zero数组来判断初始边权是否为0 </span></span><br><span class="line">		<span class="built_in">add_edge</span>(v,u,w,!w); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dijkstra</span>(<span class="number">0</span>);<span class="comment">//第一次正常的dijkstra  </span></span><br><span class="line">	<span class="keyword">if</span>(dis[t][<span class="number">0</span>]&gt;L)&#123;<span class="comment">//因为每条边必须有权值，如果边权赋为1都超L了，那么无解 </span></span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dif=L-dis[t][<span class="number">0</span>];<span class="comment">//difference表示与L差多少 </span></span><br><span class="line">	<span class="built_in">dijkstra</span>(<span class="number">1</span>);<span class="comment">//第二次尝试加权值为L的dijkstra</span></span><br><span class="line">	<span class="keyword">if</span>(dis[t][<span class="number">1</span>]!=L)&#123;</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(RI i=<span class="number">2</span>;i&lt;=tot;i+=<span class="number">2</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>,from[i],to[i],len[i]);<span class="comment">//输出端点和权值，因为是无向图，所以i每次+2 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ueq7netd">无注释清爽版code</a></p>
+<hr />
+<p><strong>Thanks for Watching</strong></p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-anchor"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">枕流</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhenliulyx/zhenliulyx.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

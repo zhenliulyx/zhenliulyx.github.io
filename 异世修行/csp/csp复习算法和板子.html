@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenliulyx.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="拓扑排序 快速幂 123456789101112131415ll qkp(ll x,ll y,ll q)&amp;#123;	ll ans&#x3D;1%q;	ll zj&#x3D;x;	while(y)&amp;#123;		if(y&amp;1)&amp;#123;			ans*&#x3D;zj;			ans%&#x3D;q;		&amp;#125;		zj*&#x3D;zj;		zj%&#x3D;q;		y&gt;&gt;&#x3D;1;	&amp;#125;	return ans;&amp;#125;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="csp复习算法和板子">
+<meta property="og:url" content="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/csp/csp%E5%A4%8D%E4%B9%A0%E7%AE%97%E6%B3%95%E5%92%8C%E6%9D%BF%E5%AD%90.html">
+<meta property="og:site_name" content="枕流の尘歌壶">
+<meta property="og:description" content="拓扑排序 快速幂 123456789101112131415ll qkp(ll x,ll y,ll q)&amp;#123;	ll ans&#x3D;1%q;	ll zj&#x3D;x;	while(y)&amp;#123;		if(y&amp;1)&amp;#123;			ans*&#x3D;zj;			ans%&#x3D;q;		&amp;#125;		zj*&#x3D;zj;		zj%&#x3D;q;		y&gt;&gt;&#x3D;1;	&amp;#125;	return ans;&amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-25T07:52:18.000Z">
+<meta property="article:modified_time" content="2021-10-26T08:34:14.600Z">
+<meta property="article:author" content="枕流">
+<meta property="article:tag" content="枕流の尘歌壶">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/csp/csp%E5%A4%8D%E4%B9%A0%E7%AE%97%E6%B3%95%E5%92%8C%E6%9D%BF%E5%AD%90">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/csp/csp%E5%A4%8D%E4%B9%A0%E7%AE%97%E6%B3%95%E5%92%8C%E6%9D%BF%E5%AD%90.html","path":"异世修行/csp/csp复习算法和板子.html","title":"csp复习算法和板子"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>csp复习算法和板子 | 枕流の尘歌壶
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">枕流の尘歌壶</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">只要不失去你的崇高，整个世界都会为你敞开。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-number">2.</span> <span class="nav-text">快速幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lca"><span class="nav-number">3.</span> <span class="nav-text">LCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">线段树&amp;树状数组</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">枕流</p>
+  <div class="site-description" itemprop="description">谁也没有见过风，更别说你和我了；谁也没有见过爱情，直到有花束拋向自己。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://tengkaize.github.io/" title="https:&#x2F;&#x2F;tengkaize.github.io" rel="noopener" target="_blank">tkz的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hc20050615.github.io/" title="https:&#x2F;&#x2F;hc20050615.github.io" rel="noopener" target="_blank">hc的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://psephurusgladius.github.io/" title="https:&#x2F;&#x2F;psephurusgladius.github.io" rel="noopener" target="_blank">白鲟的博客</a>
+        </li>
+    </ul>
+  </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">csp复习算法和板子
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/">异世修行</a></li>
+            <li><a href="/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/csp/">CSP</a></li>
+            <li>CSP复习算法和板子</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h2 id="拓扑排序">拓扑排序</h2>
+<h2 id="快速幂">快速幂</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">qkp</span><span class="params">(ll x,ll y,ll q)</span></span>&#123;</span><br><span class="line">	ll ans=<span class="number">1</span>%q;</span><br><span class="line">	ll zj=x;</span><br><span class="line">	<span class="keyword">while</span>(y)&#123;</span><br><span class="line">		<span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">			ans*=zj;</span><br><span class="line">			ans%=q;</span><br><span class="line">		&#125;</span><br><span class="line">		zj*=zj;</span><br><span class="line">		zj%=q;</span><br><span class="line">		y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="lca">LCA</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n,m,s,tot,x,y;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">500001</span>,logn=<span class="number">23</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> next;</span><br><span class="line">&#125;t[N*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> head[N],f[N][logn+<span class="number">1</span>],depth[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	t[++tot].to=y;</span><br><span class="line">	t[tot].next=head[x];</span><br><span class="line">	head[x]=tot;</span><br><span class="line">	t[++tot].to=x;</span><br><span class="line">	t[tot].next=head[y];</span><br><span class="line">	head[y]=tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">first_deal</span><span class="params">(<span class="keyword">int</span> son,<span class="keyword">int</span> father)</span></span>&#123;</span><br><span class="line">	depth[son]=depth[father]+<span class="number">1</span>;<span class="comment">//忘+1了 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;logn;++i)&#123;<span class="comment">//不能=，要不越界 （数组不够） </span></span><br><span class="line">		f[son][i+<span class="number">1</span>]=f[f[son][i]][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=head[son];j;j=t[j].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> v=t[j].to;</span><br><span class="line">		<span class="keyword">if</span>(v==father) <span class="keyword">continue</span>;</span><br><span class="line">		f[v][<span class="number">0</span>]=son;</span><br><span class="line">		<span class="built_in">first_deal</span>(v,son);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(depth[y]&gt;depth[x])<span class="built_in">swap</span>(x,y);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=logn;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(depth[f[x][i]]&gt;=depth[y])x=f[x][i];</span><br><span class="line">		<span class="keyword">if</span>(x==y)<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=logn;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(f[x][i]!=f[y][i])&#123;</span><br><span class="line">			x=f[x][i];</span><br><span class="line">			y=f[y][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;        </span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;s);</span><br><span class="line">	<span class="keyword">while</span>(--n)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="built_in">add</span>(x,y);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">first_deal</span>(s,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">LCA</span>(x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将LCA转化为RMQ问题</p>
+<p>先求出dfs序。</p>
+<p>两个点的 LCA 一定是以这两个点第一次出现的位置为左右端点形成的区间内深度最小的那个点。</p>
+<h2 id="线段树树状数组">线段树&amp;树状数组</h2>
+<p>看看板子吧qwq</p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/">异世修行</a></li>
+            <li><a href="/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/csp/">CSP</a></li>
+            <li>CSP复习算法和板子</li>
+          
+  </ul>
+
+    
+    
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-anchor"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">枕流</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhenliulyx/zhenliulyx.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

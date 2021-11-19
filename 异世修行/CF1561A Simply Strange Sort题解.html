@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhenliulyx.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="题目大意  不断对给定的数组进行更新，数组里的数互不相等且在 \(1-n\) 区间内。 对于第 \(i\) 次更新，如果 \(i\) 为奇数，那么进行 \(f(1),f(3),\cdots,f(n−2)\)，如果 \(i\) 为偶数，那么进行 \(f(2),f(4),\cdots,f(n−1)\)。 \(f(x)\) 的定义为，如果 \(a[x]&gt;a[x+1]\)，那么交换二者位置。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CF1561A Simply Strange Sort题解">
+<meta property="og:url" content="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF1561A%20Simply%20Strange%20Sort%E9%A2%98%E8%A7%A3.html">
+<meta property="og:site_name" content="枕流の尘歌壶">
+<meta property="og:description" content="题目大意  不断对给定的数组进行更新，数组里的数互不相等且在 \(1-n\) 区间内。 对于第 \(i\) 次更新，如果 \(i\) 为奇数，那么进行 \(f(1),f(3),\cdots,f(n−2)\)，如果 \(i\) 为偶数，那么进行 \(f(2),f(4),\cdots,f(n−1)\)。 \(f(x)\) 的定义为，如果 \(a[x]&gt;a[x+1]\)，那么交换二者位置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-25T07:52:18.000Z">
+<meta property="article:modified_time" content="2021-09-28T09:21:33.445Z">
+<meta property="article:author" content="枕流">
+<meta property="article:tag" content="枕流の尘歌壶">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF1561A%20Simply%20Strange%20Sort%E9%A2%98%E8%A7%A3">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://zhenliulyx.github.io/%E5%BC%82%E4%B8%96%E4%BF%AE%E8%A1%8C/CF1561A%20Simply%20Strange%20Sort%E9%A2%98%E8%A7%A3.html","path":"异世修行/CF1561A Simply Strange Sort题解.html","title":"CF1561A Simply Strange Sort题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CF1561A Simply Strange Sort题解 | 枕流の尘歌壶
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">枕流の尘歌壶</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">只要不失去你的崇高，整个世界都会为你敞开。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">枕流</p>
+  <div class="site-description" itemprop="description">谁也没有见过风，更别说你和我了；谁也没有见过爱情，直到有花束拋向自己。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://tengkaize.github.io/" title="https:&#x2F;&#x2F;tengkaize.github.io" rel="noopener" target="_blank">tkz的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hc20050615.github.io/" title="https:&#x2F;&#x2F;hc20050615.github.io" rel="noopener" target="_blank">hc的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://psephurusgladius.github.io/" title="https:&#x2F;&#x2F;psephurusgladius.github.io" rel="noopener" target="_blank">白鲟的博客</a>
+        </li>
+    </ul>
+  </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">CF1561A Simply Strange Sort题解
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h2 id="题目大意">题目大意</h2>
+<ul>
+<li>不断对给定的数组进行更新，数组里的数互不相等且在 <span class="math inline">\(1-n\)</span> 区间内。</li>
+<li>对于第 <span class="math inline">\(i\)</span> 次更新，如果 <span class="math inline">\(i\)</span> 为奇数，那么进行 <span class="math inline">\(f(1),f(3),\cdots,f(n−2)\)</span>，如果 <span class="math inline">\(i\)</span> 为偶数，那么进行 <span class="math inline">\(f(2),f(4),\cdots,f(n−1)\)</span>。</li>
+<li><span class="math inline">\(f(x)\)</span> 的定义为，如果 <span class="math inline">\(a[x]&gt;a[x+1]\)</span>，那么交换二者位置。</li>
+<li>问：第几次更新能让数组变成递增的。</li>
+</ul>
+<h2 id="思路">思路</h2>
+<p>感觉大佬们很多都是暴力大法直接切（orz），我这边提供一个逆序对做法。即，计算原数组有多少逆序对，然后对于每次调用 <span class="math inline">\(f\)</span> ，逆序对个数只会减一或不变。当逆序对个数归零时退出循环并记录更新次数。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RI register int</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> t,n,a[<span class="number">1005</span>],zc[<span class="number">1005</span>],b[<span class="number">1005</span>];</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> <span class="title">Read</span><span class="params">(T &amp;t)</span></span>&#123;</span><br><span class="line">	t=<span class="number">0</span>;<span class="keyword">char</span> C;<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>((C=<span class="built_in">getchar</span>())&lt;<span class="string">&#x27;0&#x27;</span>||C&gt;<span class="string">&#x27;9&#x27;</span>)<span class="keyword">if</span>(C==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(C&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;C&lt;=<span class="string">&#x27;9&#x27;</span>)(t*=<span class="number">10</span>)+=C-<span class="string">&#x27;0&#x27;</span>,C=<span class="built_in">getchar</span>();</span><br><span class="line">	t*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&gt;=y)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> m=(x+y)/<span class="number">2</span>,t1=<span class="built_in">calc</span>(x,m),t2=<span class="built_in">calc</span>(m+<span class="number">1</span>,y),i,j,p=x<span class="number">-1</span>,t3=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(i=x,j=m+<span class="number">1</span>;i&lt;=m&amp;&amp;j&lt;=y;)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[i]&gt;a[j])&#123;</span><br><span class="line">				zc[++p]=a[j++];</span><br><span class="line">				t3+=m-i+<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> zc[++p]=a[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(;i&lt;=m;i++)zc[++p]=a[i];</span><br><span class="line">		<span class="keyword">for</span>(;j&lt;=y;j++)zc[++p]=a[j];</span><br><span class="line">		<span class="keyword">for</span>(i=x;i&lt;=y;i++)a[i]=zc[i];</span><br><span class="line">		<span class="keyword">return</span> t1+t2+t3;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">Read</span>(t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">Read</span>(n);</span><br><span class="line">		<span class="keyword">for</span>(RI i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			<span class="built_in">Read</span>(a[i]);</span><br><span class="line">			b[i]=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> cnt=<span class="built_in">calc</span>(<span class="number">0</span>,n);<span class="comment">//求逆序对个数，直接套模板qwq </span></span><br><span class="line">		<span class="keyword">int</span> tot=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(cnt)&#123;</span><br><span class="line">			++tot;</span><br><span class="line">			<span class="keyword">if</span>(tot%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">for</span>(RI i=<span class="number">1</span>;i&lt;=n<span class="number">-2</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">					<span class="keyword">if</span>(b[i]&gt;b[i+<span class="number">1</span>])&#123;</span><br><span class="line">						<span class="built_in">swap</span>(b[i],b[i+<span class="number">1</span>]);</span><br><span class="line">						cnt--;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">for</span>(RI i=<span class="number">2</span>;i&lt;=n<span class="number">-1</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">					<span class="keyword">if</span>(b[i]&gt;b[i+<span class="number">1</span>])&#123;</span><br><span class="line">						<span class="built_in">swap</span>(b[i],b[i+<span class="number">1</span>]);</span><br><span class="line">						cnt--;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,tot);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<p><strong>Thanks for Watching</strong></p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-anchor"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">枕流</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhenliulyx/zhenliulyx.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
